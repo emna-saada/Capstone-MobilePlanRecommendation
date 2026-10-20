@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# survey data is not public
+data/
+*.xlsx
+*.csv
+results/
+*.pkl

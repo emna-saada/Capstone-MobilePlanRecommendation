@@ -1,0 +1,84 @@
+// Power BI measures and calculated columns for the survey dashboards.
+// Source table: 'sigma' (cleaned survey export)
+
+// ---- Measures ----
+
+TotalParticipants = COUNTROWS ( 'sigma' )
+
+
+// ---- Code -> label columns ----
+
+// S1
+Gender =
+SWITCH ( 'sigma'[S1],
+    1, "Male",
+    2, "Female",
+    "Unknown"
+)
+
+// S2
+AgeGroup =
+SWITCH ( 'sigma'[S2],
+    1, "Less than 10",
+    2, "10 to 17",
+    3, "18 to 25",
+    4, "25 to 34",
+    5, "35 to 44",
+    6, "45 to 54",
+    7, "55 to 59",
+    8, "60 to 70",
+    9, "More than 71",
+    "Unknown"
+)
+
+// S3
+AcademicLevel =
+SWITCH ( 'sigma'[S3],
+    1, "Ignorant",
+    2, "Primary School",
+    3, "High School Attended",
+    4, "University Attended",
+    5, "High School Graduate",
+    9, "No Response",
+    "Unknown"
+)
+
+// Q37_1 - satisfaction with internet coverage
+InternetCoverage_Satisfaction =
+SWITCH ( 'sigma'[Q37_1],
+    1, "Totally Unsatisfied",
+    2, "Unsatisfied",
+    3, "Satisfied",
+    4, "Highly Satisfied",
+    5, "NSP",
+    "Unknown"
+)
+
+// Q2_3 - main mobile operator
+MobileOperator =
+SWITCH ( 'sigma'[Q2_3],
+    1, "TTC",
+    2, "Ooredoo",
+    3, "Orange",
+    4, "Lycamobile",
+    "Unknown"
+)
+
+// Q17 - time of day with most internet use
+UsageTime =
+SWITCH ( 'sigma'[Q17],
+    1, "Before 8h",
+    2, "Between 8h and 12h",
+    3, "Between 12h and 14h",
+    4, "Between 14h and 18h",
+    5, "Between 18h and 22h",
+    6, "After 22h",
+    "Unknown"
+)
+
+// Q20_x - what the connection is used for (1 = yes, 2 = no)
+SocialMedia_Usage    = SWITCH ( 'sigma'[Q20_1], 1, "Yes", 2, "No", "Unknown" )
+Streaming_Usage      = SWITCH ( 'sigma'[Q20_3], 1, "Yes", 2, "No", "Unknown" )
+VideoGames_Usage     = SWITCH ( 'sigma'[Q20_4], 1, "Yes", 2, "No", "Unknown" )
+OnlineShopping_Usage = SWITCH ( 'sigma'[Q20_5], 1, "Yes", 2, "No", "Unknown" )
+Working_Usage        = SWITCH ( 'sigma'[Q20_6], 1, "Yes", 2, "No", "Unknown" )
